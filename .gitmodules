@@ -1,0 +1,6 @@
+[submodule "lib/cargs"]
+	path = lib/cargs
+	url = git@github.com:likle/cargs.git
+[submodule "lib/miniaudio"]
+	path = lib/miniaudio
+	url = git@github.com:mackron/miniaudio.git
