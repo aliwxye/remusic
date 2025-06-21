@@ -59,7 +59,7 @@ namespace remusic
 				if (i.value_name) {
 					const char* value = cag_option_get_value(&context);
 					if (!value)
-						throw std::runtime_error(std::format("Option {} does not have value, but it\'s required", identifier));
+						throw std::invalid_argument(std::format("Option {} does not have value, but it\'s required", identifier));
 
 					parsed_opts.emplace_back(identifier, value);
 				} else {
@@ -68,9 +68,6 @@ namespace remusic
 
 				break;
 			}
-
-			if (identifier == '?')
-				throw std::runtime_error(std::format("Invalid identifier: {}", identifier));
 		}
 
 		for (int param_index = cag_option_get_index(&context); param_index < argc; ++param_index)
