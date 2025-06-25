@@ -4,6 +4,7 @@ project(remusic VERSION 0.1.0 LANGUAGES CXX)
 
 set(REMUSIC_SRC_FILES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/remusic.cc
+	${CMAKE_CURRENT_SOURCE_DIR}/src/Device.cc
 	${CMAKE_CURRENT_SOURCE_DIR}/src/Application.cc
 )
 
