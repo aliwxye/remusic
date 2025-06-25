@@ -2,7 +2,8 @@
 #define _REMUSIC_H_
 
 #include <string_view>
-#include <optional>
+#include <filesystem>
+#include <Playlist.h>
 
 namespace remusic {
 	class ILogger
@@ -16,24 +17,26 @@ namespace remusic {
 			FATAL,
 		};
 
-		virtual void log(LogLevel level, std::string_view message) const noexcept = 0;
+		virtual void log(LogLevel level, std::string_view message) = 0;
 	};
 
 	class Remusic final
 	{
 	public:
-		Remusic(int argc, char* argv[], const ILogger& logger) noexcept(false);
+		Remusic(const ILogger& logger) noexcept;
 
-		void run() noexcept(false);
-
-	private:
 		struct Options
 		{
 			bool looped;
 		};
+		void attach_options(const Options& options) noexcept;
 
-		Options process_arguments(int argc, char* argv[]) noexcept(false);
+		void run() const noexcept(false);
+		void load_from_file(const std::filesystem::path& file) noexcept(false);
+
+	private:
 		Options m_options;
+		Playlist m_playlist;
 		const ILogger& m_logger;
 	};
 };

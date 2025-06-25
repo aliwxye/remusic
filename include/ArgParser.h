@@ -3,7 +3,7 @@
 
 #include <optional>
 #include <string>
-#include <array>
+#include <span>
 #include <cargs.h>
 #include <stdexcept>
 #include <format>
@@ -37,16 +37,15 @@ namespace remusic
 		{}
 	};
 
-	template<std::size_t ARGS_LEN>
-	ParseResult parse_args(int argc, char *argv[], const std::array<cag_option, ARGS_LEN>& opts) noexcept(false)
+	ParseResult parse_args(int argc, char *argv[], std::span<cag_option> opts) noexcept(false)
 	{
 		cag_option_context context;
-		cag_option_init(&context, opts.data(), ARGS_LEN, argc, argv);
+		cag_option_init(&context, opts.data(), opts.size(), argc, argv);
 
 		std::vector<ParsedOptions> parsed_opts;
-		parsed_opts.reserve(ARGS_LEN);
+		parsed_opts.reserve(opts.size());
 		std::vector<std::string> additional_parameters;
-		additional_parameters.reserve(ARGS_LEN);
+		additional_parameters.reserve(opts.size());
 
 		while (cag_option_fetch(&context))
 		{
