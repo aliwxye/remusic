@@ -15,8 +15,14 @@ namespace remusic
 		void load_sound(const std::filesystem::path& song_path);
 		const std::deque<Sound>& get_sounds() const noexcept;
 
+		void save(const std::filesystem::path& save_path) const noexcept(false);
+
+		void loop_toggle() noexcept;
+
 	private:
+		bool loop{false};
 		std::deque<Sound> m_sounds; 
+		Sound* m_current{nullptr};
 	};
 }
 

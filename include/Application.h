@@ -3,7 +3,7 @@
 
 #include <string_view>
 #include <filesystem>
-#include <Playlist.h>
+#include <Device.h>
 
 namespace remusic {
 	class ILogger
@@ -31,12 +31,9 @@ namespace remusic {
 		};
 		void attach_options(const Options& options) noexcept;
 
-		void run() const noexcept(false);
-		void load_from_file(const std::filesystem::path& file) noexcept(false);
-
 	private:
 		Options m_options;
-		Playlist m_playlist;
+		Device m_device;
 		const ILogger& m_logger;
 	};
 };

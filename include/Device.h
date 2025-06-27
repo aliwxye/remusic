@@ -20,7 +20,6 @@ namespace remusic {
 	private:
 		static void data_callback(ma_device*, void*, const void*, ma_uint32);
 
-		bool m_loop{false};
 		ma_device m_device;
 		Playlist m_playlist;
 	};
